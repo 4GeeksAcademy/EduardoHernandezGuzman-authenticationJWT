@@ -38,17 +38,36 @@ def handle_hello2():
 
 
 
-
-@api.route('/login', methods=["POST"])
+######## LOGIN ########
+@api.route("/login", methods=["POST"])
 def login():
-    username = request.json.get("username", None)
+    email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if username != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg" : "Incorrect email "}), 401
+    if user.password != password:
+        return jsonify({"msg": "Incorrect password"}), 401
+
+    access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-
+######## SIGNUP ########
+@api.route('/signup', methods=['POST']) 
+def signup():
+    body = request.get_json()
+    user = User.query.filter_by(email=body["email"]).first()
+    if user == None:
+        user = User(email=body["email"], password=body["password"], is_active=True)
+        db.session.add(user)
+        db.session.commit()
+        response_body = {
+            "msg" : "You've been successfully registered"
+        }
+        return jsonify(response_body), 200
+    else:
+        return jsonify({"msg" : "The email address is already in use"}), 401
 
 
