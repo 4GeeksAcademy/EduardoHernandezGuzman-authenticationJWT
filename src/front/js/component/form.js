@@ -17,6 +17,38 @@ const Form = () => {
         // Aquí puedes realizar la lógica de autenticación con el correo electrónico y la contraseña
         console.log("Email:", email);
         console.log("Password:", password);
+
+
+
+
+
+
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify (
+            {
+                "email": email,
+                "password": password
+            }
+            )    
+                
+        };
+
+        fetch("https://psychic-goggles-jj5rq4v797452r64-3001.app.github.dev/api/login", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
+
+
+
+
+
+
+
     };
 
     return (
