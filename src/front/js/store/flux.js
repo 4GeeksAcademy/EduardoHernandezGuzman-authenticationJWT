@@ -23,21 +23,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			login: (email, password) => {
 				console.log("Desde Flux");
-
+			  
 				const requestOptions = {
-					method: 'POST',
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						"email": email,
-						"password": password
-					})
+				  method: 'POST',
+				  headers: { "Content-Type": "application/json" },
+				  body: JSON.stringify({
+					"email": email,
+					"password": password
+				  })
 				};
-
+			  
 				fetch(process.env.BACKEND_URL + "/api/login", requestOptions)
-					.then(response => response.json())
-					.then(result => console.log(result))
-					.catch(error => console.log('error', error));
-			},
+				  .then(response => response.json())
+				  .then(data => {
+					localStorage.setItem("token", data.access_token);
+					console.log(data);
+				  })
+				  .catch(error => console.log('error', error));
+			  },
 
 			getMessage: async () => {
 				try {
