@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
 const Form = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { store, actions } = useContext(Context);
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -13,43 +15,17 @@ const Form = () => {
         setPassword(e.target.value);
     };
 
+
     const handleLogin = () => {
-        // Aquí puedes realizar la lógica de autenticación con el correo electrónico y la contraseña
+
         console.log("Email:", email);
         console.log("Password:", password);
 
-
-
-
-
-
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify (
-            {
-                "email": email,
-                "password": password
-            }
-            )    
-                
-        };
-
-        fetch("https://psychic-goggles-jj5rq4v797452r64-3001.app.github.dev/api/login", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-
-
-
-
-
-
-
+        actions.login(email, password)
 
     };
+
+
 
     return (
         <div className="container mt-5">
