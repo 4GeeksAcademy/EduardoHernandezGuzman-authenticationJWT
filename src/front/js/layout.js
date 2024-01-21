@@ -8,6 +8,8 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { LoginOk } from "./pages/loginOk";
 import { PaginaPrivada } from "./pages/paginaPrivada";
+import Signup from "./pages/signup";
+import { SignupOk } from "./pages/signupOk";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -33,6 +35,8 @@ const Layout = () => {
                         <Route element={<h1>Not found!</h1>} />
                         <Route element={<LoginOk />} path="/loginok" />
                         <Route element={<PaginaPrivada />} path="/paginaprivada" />
+                        <Route element={<Signup />} path="/signup"  />
+                        <Route element={<SignupOk />} path="/signupok"  />
                     </Routes>
                     {/* <Footer /> */}
                 </ScrollToTop>

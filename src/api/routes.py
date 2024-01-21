@@ -18,23 +18,23 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+# @api.route('/hello', methods=['POST', 'GET'])
+# def handle_hello():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+#     response_body = {
+#         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
-@api.route('/prueba', methods=['POST', 'GET'])
-def handle_hello2():
+# @api.route('/prueba', methods=['POST', 'GET'])
+# def handle_hello2():
 
-    response_body = {
-        "message": "prueba"
-    }
+#     response_body = {
+#         "message": "prueba"
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
 
 
@@ -55,19 +55,26 @@ def login():
     return jsonify(access_token=access_token)
 
 ######## SIGNUP ########
-@api.route('/signup', methods=['POST']) 
+@api.route('/signup', methods=['POST'])
 def signup():
-    body = request.get_json()
-    user = User.query.filter_by(email=body["email"]).first()
-    if user == None:
-        user = User(email=body["email"], password=body["password"], is_active=True)
-        db.session.add(user)
+    try:
+        body = request.get_json()
+        existing_user = User.query.filter_by(email=body["email"]).first()
+
+        if existing_user:
+            return jsonify({"msg": "El correo electrónico ya está en uso"}), 401
+
+        new_user = User(email=body["email"], password=body["password"], is_active=True)
+        db.session.add(new_user)
         db.session.commit()
+
         response_body = {
-            "msg" : "You've been successfully registered"
+            "msg": "Te has registrado correctamente"
         }
+
         return jsonify(response_body), 200
-    else:
-        return jsonify({"msg" : "The email address is already in use"}), 401
+
+    except Exception as e:
+        return jsonify({"msg": str(e)}), 500
 
 

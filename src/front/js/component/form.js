@@ -18,10 +18,6 @@ const Form = () => {
 
 
     const handleLogin = () => {
-
-        console.log("Email:", email);
-        console.log("Password:", password);
-
         actions.login(email, password)
 
     };
@@ -40,7 +36,7 @@ const Form = () => {
     </div>
     <div className="col-6">
     <div className="container mt-5">
-            <h1>Login</h1>
+            <h1>Inicio de sesión</h1>
             <br></br>
             <form>
                 <div className="mb-3">
@@ -54,7 +50,7 @@ const Form = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password:</label>
+                    <label htmlFor="password" className="form-label">Contraseña:</label>
                     <input
                         type="password"
                         className="form-control"
@@ -68,7 +64,7 @@ const Form = () => {
                     className="btn btn-primary"
                     onClick={handleLogin}
                 >
-                    Login
+                    Acceder
                 </button>
             </form>
         </div>
