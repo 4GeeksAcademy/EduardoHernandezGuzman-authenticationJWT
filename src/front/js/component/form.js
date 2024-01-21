@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Navigate } from "react-router-dom";
 
 const Form = () => {
 
@@ -29,7 +30,7 @@ const Form = () => {
 
     return (
         <>
-        {store.auth === true ? "Estás logueado correctamente" : "No estás logueado correctamente"}
+        {store.auth === true ? <Navigate to = "/loginok"/> : "No estás logueado... introduce tu email y contraseña"}
         <div className="container mt-5">
             <h1>Login</h1>
             <br></br>
