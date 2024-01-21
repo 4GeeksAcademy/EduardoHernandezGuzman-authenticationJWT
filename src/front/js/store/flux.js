@@ -50,6 +50,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  .catch(error => console.log('error', error));
 			  },
 
+			  logout: () => {
+				setStore({ auth: false});
+				localStorage.removeItem("token");
+				
+			},
+
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
