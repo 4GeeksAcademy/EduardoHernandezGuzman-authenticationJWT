@@ -28,6 +28,8 @@ const Form = () => {
 
 
     return (
+        <>
+        {store.auth === true ? "Estás logueado correctamente" : "No estás logueado correctamente"}
         <div className="container mt-5">
             <h1>Login</h1>
             <br></br>
@@ -61,6 +63,7 @@ const Form = () => {
                 </button>
             </form>
         </div>
+        </>
     );
 };
 

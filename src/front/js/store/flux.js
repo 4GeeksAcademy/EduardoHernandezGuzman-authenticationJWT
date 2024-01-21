@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+
+			auth:false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -32,9 +34,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"password": password
 				  })
 				};
-			  
+			
 				fetch(process.env.BACKEND_URL + "/api/login", requestOptions)
-				  .then(response => response.json())
+				  .then(response => {
+					console.log(response.status)
+					if(response.status ==200) {
+						setStore({ auth: true});
+					}
+					return response.json()})
+					
 				  .then(data => {
 					localStorage.setItem("token", data.access_token);
 					console.log(data);
