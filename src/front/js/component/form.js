@@ -30,8 +30,16 @@ const Form = () => {
 
     return (
         <>
-        {store.auth === true ? <Navigate to = "/loginok"/> : "No estás logueado... introduce tu email y contraseña"}
-        <div className="container mt-5">
+        {store.auth === true ? <Navigate to = "/loginok"/> : "Introduce tu email y contraseña para acceder al contenido privado"}
+        
+
+        <div className="container text-center">
+  <div className="row align-items-start">
+    <div className="col">
+      
+    </div>
+    <div className="col-6">
+    <div className="container mt-5">
             <h1>Login</h1>
             <br></br>
             <form>
@@ -64,6 +72,18 @@ const Form = () => {
                 </button>
             </form>
         </div>
+    </div>
+    <div className="col">
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+
+        
         </>
     );
 };

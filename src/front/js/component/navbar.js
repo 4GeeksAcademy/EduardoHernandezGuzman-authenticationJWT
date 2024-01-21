@@ -8,15 +8,15 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<Link to="/">
+				{/* <Link to="/">
 					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
+				</Link> */}
 				<div className="ml-auto">
 
 					<Link to="/">
 						
 
-						{store.auth === true ? <button onClick={()=>actions.logout()} className="btn btn-primary">Logout</button> : null}
+						{store.auth === true ? <button onClick={()=>actions.logout()} className="btn btn-primary" style={{marginLeft:"60rem"}}>Logout</button> : null}
 
 
 

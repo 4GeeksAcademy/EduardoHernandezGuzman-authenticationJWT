@@ -18,8 +18,40 @@ export const LoginOk = () => {
     return (
         <>
             {redirect ? <Navigate to="/paginaprivada" /> : null}
-            <h2>Login realizado correctamente</h2>
-            <h3>Redirigiendo a página privada...</h3>
+
+
+            <div className="container text-center">
+                <div className="row align-items-start mt-5">
+                    <div className="col">
+
+                    </div>
+                    <div className="col-10">
+                        <h2 className="display-6">Login realizado correctamente</h2>
+                        <h5>Redirigiendo a página privada...</h5>
+                        <br></br>
+                        <div className="spinner" style={{marginLeft:"33rem" , marginTop:"30px"}}>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className="col">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
         </>
     );
 };
